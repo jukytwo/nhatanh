@@ -1914,7 +1914,6 @@ function stepify(subj, it) {
   if (parentOK) $$('.ponly', wrap).forEach(x => x.classList.add('pshow'));
   const steps = [...wrap.children].filter(x => (x.matches('section.sec') || x.matches('div.acts')) && !x.classList.contains('ponly'));
   if (steps.length < 2) return;
-  const en = EN_SUBJ(subj);
   if (LSTEP.id !== it.id) LSTEP = { id: it.id, i: 0 };
   const pp = prof(), seen = !!(pp && pp.done && pp.done[it.id]);
   const lab = x => { const h = x.querySelector('h2'); if (h) return h.textContent.replace(/^[^\p{L}]+/u, '').split(' · ').pop().trim(); return x.querySelector('.act b') ? x.querySelector('.act b').textContent : ''; };
@@ -3251,7 +3250,7 @@ let storyTok = 0;
 function openStory(sq) {
   Speech.stop();
   const old = $('#vov'); if (old) old.remove();
-  const { o, text } = storyOf(sq), add = sq.op === '+';
+  const { o, text } = storyOf(sq);
   const ss = sentences(text);
   const ov = document.createElement('div');
   ov.className = 'overlay s-toan'; ov.id = 'vov';
